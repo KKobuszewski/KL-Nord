@@ -1,0 +1,141 @@
+%% LyX 2.3.4.2 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[oneside]{amsbook}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=0.75cm,bmargin=0.75cm,lmargin=1.0cm,rmargin=1.0cm}
+\setlength{\parindent}{0bp}
+\usepackage{booktabs}
+\usepackage{amsthm}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=false]
+ {hyperref}
+\usepackage{multicol}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\numberwithin{section}{chapter}
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+
+\makeatother
+
+\begin{document}
+%\begin{tabular}{llllll}
+\begin{tabular*}{0.9\linewidth}{@{\extracolsep{\fill}} llllll}
+Orginal / Copy  &  &  &  & data rachunku  & {{ date }} \tabularnewline
+Invoice / Faktura VAT  & No.: {{ klno }} &  &  & invoice date  & \tabularnewline
+ &  &  &  &  & \tabularnewline
+ &  &  &  & data sprzedaży & {{ date }} \tabularnewline
+ &  &  &  & sales date & \tabularnewline
+\end{tabular*}
+% forcing a table into page width
+%\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}} llllll}
+%	Orginal / Copy  &  &  &  & data rachunku  & ???\tabularnewline
+%	Invoice / Faktura VAT  & No.:  & ??? &  & invoice date  & \tabularnewline
+%	&  &  &  &  & \tabularnewline
+%	&  &  &  & data sprzedaży & ???\tabularnewline
+%	&  &  &  & sales date & \tabularnewline
+%\end{tabular*}
+
+\textbf{Nabywca / BUYER }
+
+{{ bname }}
+
+2-4 Mesogeion Ave.
+
+Athens GR 115 27 Greece
+
+VAT (EU) No.: {{ vatno }}
+
+~\\
+
+\textbf{Sprzedajacy / SELLER}
+
+\textbf{KL Nord Lech Kobuszewski}
+
+PL 76-270 Przewloka, ul. Galczynskiego 16
+
+VAT (EU) No.: PL 839 170 44 35
+
+~\\
+\begin{multicols}{2}
+Bank: PKO BP Oddz.1 Slupsk, ul. Wazów 5
+
+IBAN: PL11102046490000790201167295
+
+KOD SWIFT: BPKOPLPW
+
+\columnbreak
+
+PŁATNOŚĆ: 60 DAYS FROM THE DATE
+
+PAYMENT: BY SWIFT TRANSFER
+\end{multicols}
+
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}|ll|ll|ll|}
+\hline 
+\multicolumn{1}{l}{} & \multicolumn{1}{l}{} &  & \multicolumn{1}{l}{} &  & \multicolumn{1}{l}{}\tabularnewline
+\hline 
+l.P. USŁUGA  &  & WARTOŚĆ NETTO &  & WARTOŚĆ BRUTTO & \tabularnewline
+agency servise  &  & NET VALUE &  & GROSS VALUE & \tabularnewline
+\hline 
+ &  &  &  &  & \tabularnewline
+NAZWA &  & EUR &  & EUR & \tabularnewline
+DESCRIPTION &  &  &  &  & \tabularnewline
+\hline 
+ &  &  &  &  & \tabularnewline
+PROWIZJA AGENCYJNA &  &  &  &  & \tabularnewline
+zgodnie z &  &  &  &  & \tabularnewline
+fakturą nr {{ invno }} &  &  &  &  & \tabularnewline
+{{ mass }}~t x {{ eurpert}} EUR/t &  &  &  &  & \tabularnewline
+\cline{3-6} \cline{4-6} \cline{5-6} \cline{6-6} 
+ &  &  &  &  & \tabularnewline
+AGENCY COMMISSION &  &  &  &  & \tabularnewline
+acc. to invoice &  &  &  &  & \tabularnewline
+No. {{ invno }} fr {{ data }} &  &  & {{ value }} &  & {{ value }}\tabularnewline
+\hline 
+\multicolumn{1}{|l|}{} & \multicolumn{1}{l}{RAZEM: } &  &  &  & \tabularnewline
+\multicolumn{1}{|l|}{Adnotacje:} & \multicolumn{1}{l}{TOTAL: } &  & {{ value }} &  & {{ value }}\tabularnewline
+\cline{2-6} \cline{3-6} \cline{4-6} \cline{5-6} \cline{6-6} 
+\multicolumn{1}{|l|}{Annotations:} & \multicolumn{1}{l}{W TYM:} &  &  &  & \tabularnewline
+\multicolumn{1}{|l|}{} & \multicolumn{1}{l}{INCL.:} &  & {{ value }} &  & {{ value }}\tabularnewline
+\cline{2-6} \cline{3-6} \cline{4-6} \cline{5-6} \cline{6-6} 
+\multicolumn{1}{|l|}{} & \multicolumn{1}{l}{} &  &  &  & \tabularnewline
+\multicolumn{1}{|l|}{} & \multicolumn{1}{l}{} &  &  &  & \tabularnewline
+\cline{2-6} \cline{3-6} \cline{4-6} \cline{5-6} \cline{6-6} 
+\multicolumn{1}{|l|}{} & \multicolumn{1}{l}{} &  &  &  & \tabularnewline
+\multicolumn{1}{|l|}{} & \multicolumn{1}{l}{} &  &  &  & \tabularnewline
+\hline 
+\end{tabular*}
+
+~\\
+
+\textbf{DO ZAPŁATY: {{ value }}~EUR}
+
+\textbf{TO BE PAID:}
+
+~\\
+
+SŁOWNIE: {{ valuesay }}~EUR
+
+SAY:
+
+~\\
+
+SERVICE'S BUYER IS THE VALUE ADDED TAX PAYER
+
+Nabywca usługi jest płatnikiem podatku VAT „odwrotne obciążenie”
+
+~\\
+
+Signature
+
+Kobuszewski Lech
+\end{document}
