@@ -1,6 +1,8 @@
 %% LyX 2.3.4.2 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
 \documentclass[oneside]{amsbook}
+\usepackage[T1]{fontenc}
+\usepackage[T1]{polski}
 \usepackage[utf8]{inputenc}
 \usepackage{geometry}
 \geometry{verbose,tmargin=0.75cm,bmargin=0.75cm,lmargin=1.0cm,rmargin=1.0cm}
@@ -18,6 +20,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
 %% Because html converters don't know tabularnewline
 \providecommand{\tabularnewline}{\\}
+\renewcommand{\arraystretch}{1.1}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
 \numberwithin{section}{chapter}
@@ -25,6 +28,7 @@
 \numberwithin{figure}{section}
 
 \makeatother
+
 
 \begin{document}
 %\begin{tabular}{llllll}
@@ -64,7 +68,7 @@ PL 76-270 Przewloka, ul. Galczynskiego 16
 
 VAT (EU) No.: PL 839 170 44 35
 
-~\\
+%~\\
 \begin{multicols}{2}
 Bank: PKO BP Oddz.1 Slupsk, ul. Wazów 5
 
@@ -81,8 +85,9 @@ PAYMENT: BY SWIFT TRANSFER
 
 \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}|ll|ll|ll|}
 \hline 
-\multicolumn{1}{l}{} & \multicolumn{1}{l}{} &  & \multicolumn{1}{l}{} &  & \multicolumn{1}{l}{}\tabularnewline
-\hline 
+\multicolumn{1}{l}{} & \multicolumn{1}{l}{} &  & \multicolumn{1}{l}{} &  & \multicolumn{1}{l}{}\tabularnewline[-1em]
+\hline
+\\[-1em]
 l.P. USŁUGA  &  & WARTOŚĆ NETTO &  & WARTOŚĆ BRUTTO & \tabularnewline
 agency servise  &  & NET VALUE &  & GROSS VALUE & \tabularnewline
 \hline 
@@ -99,8 +104,9 @@ fakturą nr {{ invno }} &  &  &  &  & \tabularnewline
  &  &  &  &  & \tabularnewline
 AGENCY COMMISSION &  &  &  &  & \tabularnewline
 acc. to invoice &  &  &  &  & \tabularnewline
-No. {{ invno }} fr {{ data }} &  &  & {{ value }} &  & {{ value }}\tabularnewline
-\hline 
+No. {{ invno }} fr {{ date }} &  &  & {{ value }} &  & {{ value }}\tabularnewline
+\hline
+\\[-1em]
 \multicolumn{1}{|l|}{} & \multicolumn{1}{l}{RAZEM: } &  &  &  & \tabularnewline
 \multicolumn{1}{|l|}{Adnotacje:} & \multicolumn{1}{l}{TOTAL: } &  & {{ value }} &  & {{ value }}\tabularnewline
 \cline{2-6} \cline{3-6} \cline{4-6} \cline{5-6} \cline{6-6} 
@@ -117,15 +123,13 @@ No. {{ invno }} fr {{ data }} &  &  & {{ value }} &  & {{ value }}\tabularnewlin
 
 ~\\
 
-\textbf{DO ZAPŁATY: {{ value }}~EUR}
-
-\textbf{TO BE PAID:}
-
-~\\
-
-SŁOWNIE: {{ valuesay }}~EUR
-
-SAY:
+\begin{tabular}{ll}
+\textbf{DO ZAPŁATY:} & \textbf{ {{ value }}~EUR}\tabularnewline
+\textbf{TO BE PAID:} & \tabularnewline
+& \tabularnewline
+S{\L}OWNIE: & {{ valuesaypl }}~EUR\tabularnewline
+SAY:&{{ valuesayen }}~EUR\tabularnewline
+\end{tabular}
 
 ~\\
 
@@ -133,9 +137,15 @@ SERVICE'S BUYER IS THE VALUE ADDED TAX PAYER
 
 Nabywca usługi jest płatnikiem podatku VAT „odwrotne obciążenie”
 
-~\\
+%~\\
+\vfill
 
 Signature
 
+~\\
+~\\
+
 Kobuszewski Lech
+
+
 \end{document}
