@@ -7,6 +7,7 @@ import datetime
 import numpy as np
 
 import PyPDF2
+from num2words import num2words
 
 
 
@@ -59,3 +60,34 @@ def invoice_to_data(invoicestr):
             benef = 'Elval'
     
     return inv_no, date, mass, cost, client, benef
+
+
+def pdf_to_txt(pdfFileObj):
+    pdfReader = PyPDF2.PdfReader(pdfFileObj)
+    
+    txt = ''
+    for pageObj in pdfReader.pages:
+        txt += pageObj.extract_text()
+    
+    return txt
+
+def pdf_to_data(pdfFileObj):
+    return invoice_to_data( pdf_to_txt(pdfFileObj) )
+
+def valuesay(value):
+    valuesayen = num2words(value, lang='en')
+    valuesaypl = num2words(value, lang='pl')
+    
+    # change polish sign to latex code
+    # only small letters are required
+    valuesaypl = valuesaypl.replace('ą',r'\k{a}')
+    valuesaypl = valuesaypl.replace('ę',r'\k{e}')
+    valuesaypl = valuesaypl.replace('ł', r'{\l}')
+    valuesaypl = valuesaypl.replace('ć',r'{\'c}')
+    valuesaypl = valuesaypl.replace('ń',r'{\'n}')
+    valuesaypl = valuesaypl.replace('ó',r'{\'o}')
+    valuesaypl = valuesaypl.replace('ś',r'{\'s}')
+    valuesaypl = valuesaypl.replace('ź',r'{\'z}')
+    valuesaypl = valuesaypl.replace('ż',r'{\.z}')
+    
+    return valuesayen,valuesaypl

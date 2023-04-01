@@ -10,9 +10,9 @@
 \usepackage{booktabs}
 \usepackage{amsthm}
 \usepackage[unicode=true,pdfusetitle,
- bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
- breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=false]
- {hyperref}
+bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=false]
+{hyperref}
 \usepackage{multicol}
 
 \makeatletter
@@ -31,121 +31,113 @@
 
 
 \begin{document}
-%\begin{tabular}{llllll}
-\begin{tabular*}{0.9\linewidth}{@{\extracolsep{\fill}} llllll}
-Orginal / Copy  &  &  &  & data rachunku  & {{ date }} \tabularnewline
-Invoice / Faktura VAT  & No.: {{ klno }} &  &  & invoice date  & \tabularnewline
- &  &  &  &  & \tabularnewline
- &  &  &  & data sprzedaży & {{ date }} \tabularnewline
- &  &  &  & sales date & \tabularnewline
-\end{tabular*}
-% forcing a table into page width
-%\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}} llllll}
-%	Orginal / Copy  &  &  &  & data rachunku  & ???\tabularnewline
-%	Invoice / Faktura VAT  & No.:  & ??? &  & invoice date  & \tabularnewline
-%	&  &  &  &  & \tabularnewline
-%	&  &  &  & data sprzedaży & ???\tabularnewline
-%	&  &  &  & sales date & \tabularnewline
-%\end{tabular*}
-
-\textbf{Nabywca / BUYER }
-
-{{ bname }}
-
-2-4 Mesogeion Ave.
-
-Athens GR 115 27 Greece
-
-VAT (EU) No.: {{ vatno }}
-
-~\\
-
-\textbf{Sprzedajacy / SELLER}
-
-\textbf{KL Nord Lech Kobuszewski}
-
-PL 76-270 Przewloka, ul. Galczynskiego 16
-
-VAT (EU) No.: PL 839 170 44 35
-
-%~\\
-\begin{multicols}{2}
-Bank: PKO BP Oddz.1 Slupsk, ul. Wazów 5
-
-IBAN: PL11102046490000790201167295
-
-KOD SWIFT: BPKOPLPW
-
-\columnbreak
-
-PŁATNOŚĆ: 60 DAYS FROM THE DATE
-
-PAYMENT: BY SWIFT TRANSFER
-\end{multicols}
-
-\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}|ll|ll|ll|}
-\hline 
-\multicolumn{1}{l}{} & \multicolumn{1}{l}{} &  & \multicolumn{1}{l}{} &  & \multicolumn{1}{l}{}\tabularnewline[-1em]
-\hline
-\\[-1em]
-l.P. USŁUGA  &  & WARTOŚĆ NETTO &  & WARTOŚĆ BRUTTO & \tabularnewline
-agency servise  &  & NET VALUE &  & GROSS VALUE & \tabularnewline
-\hline 
- &  &  &  &  & \tabularnewline
-NAZWA &  & EUR &  & EUR & \tabularnewline
-DESCRIPTION &  &  &  &  & \tabularnewline
-\hline 
- &  &  &  &  & \tabularnewline
-PROWIZJA AGENCYJNA &  &  &  &  & \tabularnewline
-zgodnie z &  &  &  &  & \tabularnewline
-fakturą nr {{ invno }} &  &  &  &  & \tabularnewline
-{{ mass }}~t x {{ eurpert}} EUR/t &  &  &  &  & \tabularnewline
-\cline{3-6} \cline{4-6} \cline{5-6} \cline{6-6} 
- &  &  &  &  & \tabularnewline
-AGENCY COMMISSION &  &  &  &  & \tabularnewline
-acc. to invoice &  &  &  &  & \tabularnewline
-No. {{ invno }} fr {{ date }} &  &  & {{ value }} &  & {{ value }}\tabularnewline
-\hline
-\\[-1em]
-\multicolumn{1}{|l|}{} & \multicolumn{1}{l}{RAZEM: } &  &  &  & \tabularnewline
-\multicolumn{1}{|l|}{Adnotacje:} & \multicolumn{1}{l}{TOTAL: } &  & {{ value }} &  & {{ value }}\tabularnewline
-\cline{2-6} \cline{3-6} \cline{4-6} \cline{5-6} \cline{6-6} 
-\multicolumn{1}{|l|}{Annotations:} & \multicolumn{1}{l}{W TYM:} &  &  &  & \tabularnewline
-\multicolumn{1}{|l|}{} & \multicolumn{1}{l}{INCL.:} &  & {{ value }} &  & {{ value }}\tabularnewline
-\cline{2-6} \cline{3-6} \cline{4-6} \cline{5-6} \cline{6-6} 
-\multicolumn{1}{|l|}{} & \multicolumn{1}{l}{} &  &  &  & \tabularnewline
-\multicolumn{1}{|l|}{} & \multicolumn{1}{l}{} &  &  &  & \tabularnewline
-\cline{2-6} \cline{3-6} \cline{4-6} \cline{5-6} \cline{6-6} 
-\multicolumn{1}{|l|}{} & \multicolumn{1}{l}{} &  &  &  & \tabularnewline
-\multicolumn{1}{|l|}{} & \multicolumn{1}{l}{} &  &  &  & \tabularnewline
-\hline 
-\end{tabular*}
-
-~\\
-
-\begin{tabular}{ll}
-\textbf{DO ZAPŁATY:} & \textbf{ {{ value }}~EUR}\tabularnewline
-\textbf{TO BE PAID:} & \tabularnewline
-& \tabularnewline
-S{\L}OWNIE: & {{ valuesaypl }}~EUR\tabularnewline
-SAY:&{{ valuesayen }}~EUR\tabularnewline
-\end{tabular}
-
-~\\
-
-SERVICE'S BUYER IS THE VALUE ADDED TAX PAYER
-
-Nabywca usługi jest płatnikiem podatku VAT „odwrotne obciążenie”
-
-%~\\
-\vfill
-
-Signature
-
-~\\
-~\\
-
-Kobuszewski Lech
-
-
+	%\begin{tabular}{llllll}
+	\begin{tabular*}{0.9\linewidth}{@{\extracolsep{\fill}} llllll}
+		Orginal / Copy  &  &  &  & data rachunku  & {{ date }} \tabularnewline
+		Invoice / Faktura VAT  & No.: {{ klno }} &  &  & invoice date  & \tabularnewline
+		&  &  &  &  & \tabularnewline
+		&  &  &  & data sprzeda{\.z}y & {{ date }} \tabularnewline
+		&  &  &  & sales date & \tabularnewline
+	\end{tabular*}
+	
+	\textbf{Nabywca / BUYER }
+	
+	{{ bname }}
+	
+	2-4 Mesogeion Ave.
+	
+	Athens GR 115 27 Greece
+	
+	VAT (EU) No.: {{ vatno }}
+	
+	~\\
+	
+	\textbf{Sprzedajacy / SELLER}
+	
+	\textbf{KL Nord Lech Kobuszewski}
+	
+	PL 76-270 Przewloka, ul. Galczynskiego 16
+	
+	VAT (EU) No.: PL 839 170 44 35
+	
+	%~\\
+	\begin{multicols}{2}
+		Bank: PKO BP Oddz.1 Slupsk, ul. Wazow 5
+		
+		IBAN: PL11102046490000790201167295
+		
+		KOD SWIFT: BPKOPLPW
+		
+		\columnbreak
+		
+		P{\L}ATNO{\'S}{\'C}: 60 DAYS FROM THE DATE
+		
+		PAYMENT: BY SWIFT TRANSFER
+	\end{multicols}
+	
+	\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}|ll|ll|ll|}
+		\hline 
+		\multicolumn{1}{l}{} & \multicolumn{1}{l}{} &  & \multicolumn{1}{l}{} &  & \multicolumn{1}{l}{}\tabularnewline[-1em]
+		\hline
+		\\[-1em]
+		l.P. USŁUGA  &  & WARTO{\'S}{\'C} NETTO &  & WARTO{\'S}{\'C} BRUTTO & \tabularnewline
+		agency servise  &  & NET VALUE &  & GROSS VALUE & \tabularnewline
+		\hline 
+		&  &  &  &  & \tabularnewline
+		NAZWA &  & EUR &  & EUR & \tabularnewline
+		DESCRIPTION &  &  &  &  & \tabularnewline
+		\hline 
+		&  &  &  &  & \tabularnewline
+		PROWIZJA AGENCYJNA &  &  &  &  & \tabularnewline
+		zgodnie z &  &  &  &  & \tabularnewline
+		faktur\k{a} nr {{ invno }} &  &  &  &  & \tabularnewline
+		{{ mass }}~t x {{ eurpert}} EUR/t &  &  &  &  & \tabularnewline
+		\cline{3-6} \cline{4-6} \cline{5-6} \cline{6-6} 
+		&  &  &  &  & \tabularnewline
+		AGENCY COMMISSION &  &  &  &  & \tabularnewline
+		acc. to invoice &  &  &  &  & \tabularnewline
+		No. {{ invno }} fr {{ date }} &  &  & {{ value }} &  & {{ value }}\tabularnewline
+		\hline
+		\\[-1em]
+		\multicolumn{1}{|l|}{} & \multicolumn{1}{l}{RAZEM: } &  &  &  & \tabularnewline
+		\multicolumn{1}{|l|}{Adnotacje:} & \multicolumn{1}{l}{TOTAL: } &  & {{ value }} &  & {{ value }}\tabularnewline
+		\cline{2-6} \cline{3-6} \cline{4-6} \cline{5-6} \cline{6-6} 
+		\multicolumn{1}{|l|}{Annotations:} & \multicolumn{1}{l}{W TYM:} &  &  &  & \tabularnewline
+		\multicolumn{1}{|l|}{} & \multicolumn{1}{l}{INCL.:} &  & {{ value }} &  & {{ value }}\tabularnewline
+		\cline{2-6} \cline{3-6} \cline{4-6} \cline{5-6} \cline{6-6} 
+		\multicolumn{1}{|l|}{} & \multicolumn{1}{l}{} &  &  &  & \tabularnewline
+		\multicolumn{1}{|l|}{} & \multicolumn{1}{l}{} &  &  &  & \tabularnewline
+		\cline{2-6} \cline{3-6} \cline{4-6} \cline{5-6} \cline{6-6} 
+		\multicolumn{1}{|l|}{} & \multicolumn{1}{l}{} &  &  &  & \tabularnewline
+		\multicolumn{1}{|l|}{} & \multicolumn{1}{l}{} &  &  &  & \tabularnewline
+		\hline 
+	\end{tabular*}
+	
+	~\\
+	
+	\begin{tabular}{ll}
+		\textbf{DO ZAP{\L}ATY:} & \textbf{ {{ value }}~EUR}\tabularnewline
+		\textbf{TO BE PAID:} & \tabularnewline
+		& \tabularnewline
+		S{\L}OWNIE: & {{ valuesaypl }}~EUR\tabularnewline
+		SAY:&{{ valuesayen }}~EUR\tabularnewline
+	\end{tabular}
+	
+	~\\
+	
+	SERVICE'S BUYER IS THE VALUE ADDED TAX PAYER
+	
+	Nabywca us{\l}ugi jest p{\l}atnikiem podatku VAT „odwrotne obci\k{a}{\.z}enie”
+	
+	%~\\
+	\vfill
+	
+	Signature
+	
+	~\\
+	~\\
+	
+	Kobuszewski Lech
+	
+	
 \end{document}
