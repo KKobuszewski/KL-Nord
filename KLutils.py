@@ -28,13 +28,13 @@ def line_to_no(line):
 
 
 def valuesay(value):
-    value_rounded = round( value )
+    value_rounded = int( value // 1 )
     value_decimal = round( 10.0*(value-value_rounded) )
     
     valuesayen = num2words(value_rounded, lang='en')
-    valuesayen = valuesayen + '& {:2d}/100'
+    valuesayen = valuesayen + ' & {:2d}/100'.format(value_decimal)
     valuesaypl = num2words(value_rounded, lang='pl')
-    valuesayen = valuesayen + 'i {:2d}/100'
+    valuesaypl = valuesaypl + ' i {:2d}/100'.format(value_decimal)
     
     # change polish sign to latex code
     # only small letters are required
@@ -100,7 +100,7 @@ def invoice_to_data(invoicestr,klno,eur_per_t=None):
     
     # convert value to string
     valuesayen, valuesaypl = valuesay(value)
-    value = '{:10.2f}'
+    value = '{:10.2f}'.format(value)
 
     # save data to excel
     benef_name = { 'Symetal' : r'\textbf{SYMETAL Aluminiu Foil Industry S.A.}',
