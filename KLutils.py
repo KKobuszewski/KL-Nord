@@ -29,10 +29,10 @@ def line_to_no(line):
 
 def valuesay(value):
     value_rounded = int( value // 1 )
-    value_decimal = round( 10.0*(value-value_rounded) )
+    value_decimal = round( 100.0*(value-value_rounded) )
     
     valuesayen = num2words(value_rounded, lang='en')
-    valuesayen = valuesayen + ' & {:2d}/100'.format(value_decimal)
+    valuesayen = valuesayen + ' \& {:2d}/100'.format(value_decimal)
     valuesaypl = num2words(value_rounded, lang='pl')
     valuesaypl = valuesaypl + ' i {:2d}/100'.format(value_decimal)
     
