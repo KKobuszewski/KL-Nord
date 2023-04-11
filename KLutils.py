@@ -106,7 +106,7 @@ def invoice_to_data(invoicestr,klno,eur_per_t=None):
     benef_name = { 'Symetal' : r'\textbf{SYMETAL Aluminiu Foil Industry S.A.}',
                      'Elval' : r'\textbf{ELVALHALCOR Hellenic Copper and Aluminium Industry S.A.}' }
     benef_vatno = {'Symetal' : 'EL 998104946',
-                    ' Elval' : 'EL 094061318'  }
+                     'Elval' : 'EL 094061318'  }
     data = {'klno'       : klno,
             'invno'      : inv_no,
             'date'       : date,
