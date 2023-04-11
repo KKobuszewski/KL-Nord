@@ -143,4 +143,5 @@ def data_to_tex(data,template_file='/content/KL-Nord/KL_invoice_template.tex'):
     j2_template = Template(template)
 
     with open('{}.tex'.format(data['klno']), "w") as tex_file:
+        data['klno'] = data['klno'].replace('_','\_')
         tex_file.write(j2_template.render(data))
