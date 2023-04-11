@@ -51,7 +51,7 @@ def valuesay(value):
     return valuesayen,valuesaypl
 
 
-def invoice_to_data(invoicestr,eur_per_t=None):
+def invoice_to_data(invoicestr,klno,eur_per_t=None):
     # variable initialization
     inv_no = None
     date   = None
@@ -103,6 +103,10 @@ def invoice_to_data(invoicestr,eur_per_t=None):
     value = '{:10.2f}'
 
     # save data to excel
+    benef_name = { 'Symetal' : r'\textbf{SYMETAL Aluminiu Foil Industry S.A.}',
+                     'Elval' : r'\textbf{ELVALHALCOR Hellenic Copper and Aluminium Industry S.A.}' }
+    benef_vatno = {'Symetal' : 'EL 998104946',
+                    ' Elval' : 'EL 094061318'  }
     data = {'klno'       : klno,
             'invno'      : inv_no,
             'date'       : date,
@@ -127,8 +131,8 @@ def pdf_to_txt(pdfFileObj):
     return txt
 
 
-def pdf_to_data(pdfFileObj,eur_per_t=None):
-    return invoice_to_data( pdf_to_txt(pdfFileObj), eur_per_t=eur_per_t )
+def pdf_to_data(pdfFileObj,klno,eur_per_t=None):
+    return invoice_to_data( pdf_to_txt(pdfFileObj), klno, eur_per_t=eur_per_t )
 
 
 def data_to_tex(data,template_file='/content/KL-Nord/KL_invoice_template.tex'):
