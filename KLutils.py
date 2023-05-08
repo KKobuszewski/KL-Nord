@@ -15,7 +15,8 @@ from jinja2 import Template
 
 
 def str_to_date(s):
-    return datetime.datetime.strptime(s, "%d.%m.%Y").date()
+    date = datetime.datetime.strptime(s, "%d.%m.%Y").date()
+    return '{:2d}.{:2d}.{:4d}'.format(date.day,date.month,date.year)
 
 
 def line_to_no(line):
