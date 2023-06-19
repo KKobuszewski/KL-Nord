@@ -20,16 +20,37 @@ from email.mime.audio import MIMEAudio
 from email.mime.base import MIMEBase
 from mimetypes import guess_type as guess_mime_type
 
+
+# ------------------------- utility functions -------------------------------------------------------------
+def get_size_format(b, factor=1024, suffix="B"):
+    """
+    Scale bytes to its proper byte format
+    e.g:
+        1253656 => '1.20MB'
+        1253656678 => '1.17GB'
+    """
+    for unit in ["", "K", "M", "G", "T", "P", "E", "Z"]:
+        if b < factor:
+            return f"{b:.2f}{unit}{suffix}"
+        b /= factor
+    return f"{b:.2f}Y{suffix}"
+
+def clean(text):
+    # clean text for creating a folder
+    return "".join(c if c.isalnum() else "_" for c in text)
+
+
+
+
+# ------------------------- authentication -------------------------------------------------------------
+
 # Request all access (permission to read/send/receive emails, manage the inbox, and more)
 SCOPES = ['https://mail.google.com/']
+#SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
 our_email = 'your_gmail@gmail.com'
 
-DIR_TO_CREDENTIAL  =  '/content/drive/MyDrive/KL Nord/'
-PATH_TO_CREDENTIAL =  DIR_TO_CREDENTIAL + 'credentials.json'
-PATH_TO_TOKEN      =  DIR_TO_CREDENTIAL + 'gmail_token_lk.json'
-SCOPES             = ['https://www.googleapis.com/auth/gmail.readonly']
 
-def gmail_authenticate(PATH_TO_CREDENTIAL,PATH_TO_TOKEN,SCOPES):
+def gmail_authenticate(PATH_TO_CREDENTIAL,SCOPES,PATH_TO_TOKEN=None):
     creds = None
     # the file token.pickle stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first time
@@ -66,48 +87,9 @@ def gmail_authenticate(PATH_TO_CREDENTIAL,PATH_TO_TOKEN,SCOPES):
             #token.write(creds.to_json())
     return build('gmail', 'v1', credentials=creds)
 
-# Adds the attachment with the given filename to the given message
-def add_attachment(message, filename):
-    content_type, encoding = guess_mime_type(filename)
-    if content_type is None or encoding is not None:
-        content_type = 'application/octet-stream'
-    main_type, sub_type = content_type.split('/', 1)
-    if main_type == 'text':
-        fp = open(filename, 'rb')
-        msg = MIMEText(fp.read().decode(), _subtype=sub_type)
-        fp.close()
-    elif main_type == 'image':
-        fp = open(filename, 'rb')
-        msg = MIMEImage(fp.read(), _subtype=sub_type)
-        fp.close()
-    elif main_type == 'audio':
-        fp = open(filename, 'rb')
-        msg = MIMEAudio(fp.read(), _subtype=sub_type)
-        fp.close()
-    else:
-        fp = open(filename, 'rb')
-        msg = MIMEBase(main_type, sub_type)
-        msg.set_payload(fp.read())
-        fp.close()
-    filename = os.path.basename(filename)
-    msg.add_header('Content-Disposition', 'attachment', filename=filename)
-    message.attach(msg)
 
-def build_message(destination, obj, body, attachments=[]):
-    if not attachments: # no attachments given
-        message = MIMEText(body)
-        message['to'] = destination
-        message['from'] = our_email
-        message['subject'] = obj
-    else:
-        message = MIMEMultipart()
-        message['to'] = destination
-        message['from'] = our_email
-        message['subject'] = obj
-        message.attach(MIMEText(body))
-        for filename in attachments:
-            add_attachment(message, filename)
-    return {'raw': urlsafe_b64encode(message.as_bytes()).decode()}
+# ------------------------- getting mails -------------------------------------------------------------
+
 
 
 def search_messages(service, query):
@@ -122,23 +104,7 @@ def search_messages(service, query):
             messages.extend(result['messages'])
     return messages
 
-# ------------------------- utility functions -------------------------------------------------------------
-def get_size_format(b, factor=1024, suffix="B"):
-    """
-    Scale bytes to its proper byte format
-    e.g:
-        1253656 => '1.20MB'
-        1253656678 => '1.17GB'
-    """
-    for unit in ["", "K", "M", "G", "T", "P", "E", "Z"]:
-        if b < factor:
-            return f"{b:.2f}{unit}{suffix}"
-        b /= factor
-    return f"{b:.2f}Y{suffix}"
 
-def clean(text):
-    # clean text for creating a folder
-    return "".join(c if c.isalnum() else "_" for c in text)
 
 def parse_parts(service, parts, folder_name, message):
     """
@@ -146,15 +112,14 @@ def parse_parts(service, parts, folder_name, message):
     """
     if parts:
         for part in parts:
-            filename = part.get("filename")
-            mimeType = part.get("mimeType")
-            body = part.get("body")
-            data = body.get("data")
-            file_size = body.get("size")
+            filename     = part.get("filename")
+            mimeType     = part.get("mimeType")
+            body         = part.get("body")
+            data         = body.get("data")
+            file_size    = body.get("size")
             part_headers = part.get("headers")
             if part.get("parts"):
-                # recursively call this function when we see that a part
-                # has parts inside
+                # recursively call this function when we see that a part has parts inside
                 parse_parts(service, part.get("parts"), folder_name, message)
             if mimeType == "text/plain":
                 # if the email part is text plain
@@ -248,7 +213,60 @@ def read_message(service, message):
 
 
 
+# ------------------------- sending emails -------------------------------------------------------------
+
+# Adds the attachment with the given filename to the given message
+def add_attachment(message, filename):
+    content_type, encoding = guess_mime_type(filename)
+    if content_type is None or encoding is not None:
+        content_type = 'application/octet-stream'
+    main_type, sub_type = content_type.split('/', 1)
+    if main_type == 'text':
+        fp = open(filename, 'rb')
+        msg = MIMEText(fp.read().decode(), _subtype=sub_type)
+        fp.close()
+    elif main_type == 'image':
+        fp = open(filename, 'rb')
+        msg = MIMEImage(fp.read(), _subtype=sub_type)
+        fp.close()
+    elif main_type == 'audio':
+        fp = open(filename, 'rb')
+        msg = MIMEAudio(fp.read(), _subtype=sub_type)
+        fp.close()
+    else:
+        fp = open(filename, 'rb')
+        msg = MIMEBase(main_type, sub_type)
+        msg.set_payload(fp.read())
+        fp.close()
+    filename = os.path.basename(filename)
+    msg.add_header('Content-Disposition', 'attachment', filename=filename)
+    message.attach(msg)
+
+
+def build_message(destination, obj, body, attachments=[]):
+    if not attachments: # no attachments given
+        message = MIMEText(body)
+        message['to'] = destination
+        message['from'] = our_email
+        message['subject'] = obj
+    else:
+        message = MIMEMultipart()
+        message['to'] = destination
+        message['from'] = our_email
+        message['subject'] = obj
+        message.attach(MIMEText(body))
+        for filename in attachments:
+            add_attachment(message, filename)
+    return {'raw': urlsafe_b64encode(message.as_bytes()).decode()}
+
+
+
+
+
+
 # ------------ usage ----------------
+
+"""
 # get the Gmail API service
 service = gmail_authenticate()
 
@@ -258,3 +276,4 @@ print(f"Found {len(results)} results.")
 # for each email matched, read it (output plain/text to console & save HTML and attachments)
 for msg in results:
     read_message(service, msg)
+"""
