@@ -2,12 +2,24 @@
 # source: https://www.thepythoncode.com/article/use-gmail-api-in-python
 
 import os
+import sys
 import pickle
 
 # Gmail API utils
-from googleapiclient.discovery import build
+from google.oauth2 import service_account
+from google.oauth2.credentials import Credentials
+from oauth2client.service_account import ServiceAccountCredentials
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import Flow
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
+from googleapiclient.discovery import build
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
+
+# Google Drive API calls
+from google.colab import files
+from google.colab import drive
 
 # for encoding/decoding messages in base64
 from base64 import urlsafe_b64decode, urlsafe_b64encode
