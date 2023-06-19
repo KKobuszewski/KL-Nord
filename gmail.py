@@ -117,6 +117,43 @@ def search_messages(service, query):
     return messages
 
 
+def get_message_data(message):
+    msg = service.users().messages().get(userId='me',
+                                         id=message['id'],
+                                         format='full').execute()
+    
+    deliverer     = None
+    reciever      = None
+    date          = None
+    subject       = None
+    attachment    = None
+    attachment_id = None
+    for item in msg['payload']['headers']:
+        if item['name'] == 'From':
+            deliverer = item['value']
+        if item['name'] == 'To':
+            reciever  = item['value']
+        if item['name'] == 'Date':
+            date      = item['value']
+        if item['name'] == 'Subject':
+            subject   = item['value']
+    try:
+        for part in msg['payload']['parts']:
+            for part_header in part['headers']:
+                if part_header['name'] == 'Content-Disposition':
+                    attachment_id = part['body']['attachmentId']
+                    attachment    = part_header['value']
+    except(KeyError):
+        continue
+    return deliverer,reciever,date,subject,attachment,attachment_id
+
+
+def get_messages_data(service, query):
+    messages = search_messages(service, query)
+    
+    for message in messages:
+        deliverer,reciever,date,subject,attachment,attachment_id = get_message_data(message)
+
 
 def parse_parts(service, parts, folder_name, message):
     """
