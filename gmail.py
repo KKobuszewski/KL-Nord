@@ -144,7 +144,8 @@ def get_message_data(message):
                     attachment_id = part['body']['attachmentId']
                     attachment    = part_header['value']
     except(KeyError):
-        continue
+        return deliverer,reciever,date,subject,attachment,attachment_id
+        #continue
     return deliverer,reciever,date,subject,attachment,attachment_id
 
 
