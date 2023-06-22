@@ -117,7 +117,7 @@ def search_messages(service, query):
     return messages
 
 
-def get_message_data(message):
+def get_message_data(service, message):
     msg = service.users().messages().get(userId='me',
                                          id=message['id'],
                                          format='full').execute()
@@ -153,7 +153,7 @@ def get_messages_data(service, query):
     messages = search_messages(service, query)
     
     for message in messages:
-        deliverer,reciever,date,subject,attachment,attachment_id = get_message_data(message)
+        deliverer,reciever,date,subject,attachment,attachment_id = get_message_data(service, message)
 
 
 def parse_parts(service, parts, folder_name, message):
