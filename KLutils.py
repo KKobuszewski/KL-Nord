@@ -21,10 +21,14 @@ def str_to_date(s):
 
 def line_to_no(line):
     inv_no = None
-    try:
-        inv_no = int(line.split(' ')[2])
-    except(ValueError):
-        inv_no = int(line.split(' ')[4])
+    for word in line.split(' '):
+        if (word.isdigit()):
+            inv_no = int(word)
+            continue
+    #try:
+    #    inv_no = int(line.split(' ')[2])
+    #except(ValueError):
+    #    inv_no = int(line.split(' ')[4])
     return inv_no
 
 
